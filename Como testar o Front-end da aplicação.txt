@@ -1,4 +1,4 @@
-Escrito por Eduardo Ferreira e Luis Eduardo:
+Escrito por Eduardo Ferreira, Luis Eduardo, Ana Luiza e Liz:
 
 1 - Ligar o servidor com “go run main.go”
 
