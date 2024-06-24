@@ -1,0 +1,64 @@
+Escrito por Eduardo Ferreira e Luis Eduardo:
+
+1 - Ligar o servidor com “go run main.go”
+
+2 - Conectar num navegador na porta http://localhost:8000/
+
+3 - Criar produto, pedido e testar todas as funcionalidades de listar produtos, pedidos, atualizar endereço de entrega, atualizar status do pedido e  rastrear pedido.
+
+Obs: Para correto funcionamento da interação do front com back-end é necessário estar com o banco de dados ligado e configurado com o seguinte script:
+
+-- Database: pedido_gerenciamento
+
+-- DROP DATABASE IF EXISTS pedido_gerenciamento;
+
+CREATE DATABASE pedido_gerenciamento;
+CREATE USER username WITH ENCRYPTED PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE pedido_gerenciamento TO username;
+
+GRANT TEMPORARY, CONNECT ON DATABASE pedido_gerenciamento TO PUBLIC;
+
+GRANT ALL ON DATABASE pedido_gerenciamento TO postgres;
+
+GRANT ALL ON DATABASE pedido_gerenciamento TO username;
+
+DROP TABLE IF EXISTS devolucoes;
+DROP TABLE IF EXISTS pedidos;
+DROP TABLE IF EXISTS produtos;
+
+-- Criação da tabela de pedidos
+CREATE TABLE pedidos (
+    id VARCHAR PRIMARY KEY,
+    cliente VARCHAR,
+    produtos TEXT[],  -- Array de textos para armazenar IDs dos produtos
+    valor_pedido FLOAT,
+    valor_frete FLOAT,
+    endereco VARCHAR,
+    status VARCHAR,
+    data_criacao TIMESTAMP
+);
+
+-- Criação da tabela de devoluções
+CREATE TABLE devolucoes (
+    id VARCHAR PRIMARY KEY,
+    pedido_id VARCHAR REFERENCES pedidos(id),
+    motivo VARCHAR,
+    status VARCHAR,
+    data_criacao TIMESTAMP
+);
+
+-- Criação da tabela de produtos
+CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR,
+    quantidade INT,
+    preco FLOAT
+);
+
+-- Conceder permissões
+GRANT USAGE, SELECT ON SEQUENCE produtos_id_seq TO username;
+GRANT ALL PRIVILEGES ON TABLE produtos TO username;
+GRANT ALL PRIVILEGES ON TABLE pedidos TO username;
+GRANT ALL PRIVILEGES ON TABLE devolucoes TO username;
+
+
