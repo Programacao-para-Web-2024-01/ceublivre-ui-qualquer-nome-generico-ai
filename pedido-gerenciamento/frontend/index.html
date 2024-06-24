@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Pedidos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CEUB Pedidos</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>Criar Produto</h2>
+            <form id="criarProdutoForm">
+                <label for="produtoNome">Nome do Produto</label>
+                <input type="text" id="produtoNome" required>
+                
+                <label for="produtoQuantidade">Quantidade</label>
+                <input type="number" id="produtoQuantidade" required>
+                
+                <label for="produtoPreco">Preço</label>
+                <input type="number" id="produtoPreco" step="0.01" required>
+                
+                <div class="button-group">
+                    <button type="submit">Adicionar Produto</button>
+                    <button type="button" id="listarProdutosBtn">Listar Produtos</button>
+                </div>
+            </form>
+            <ul id="produtosList"></ul>
+        </section>
+
+        <section>
+            <h2>Criar Pedido</h2>
+            <form id="criarPedidoForm">
+                <label for="cliente">Cliente</label>
+                <input type="text" id="cliente" required>
+
+                <label for="produtos">Produtos (separados por vírgula)</label>
+                <input type="text" id="produtos" required>
+
+                <label for="valorPedido">Valor do Pedido</label>
+                <input type="number" id="valorPedido" required>
+
+                <label for="valorFrete">Valor do Frete</label>
+                <input type="number" id="valorFrete" required>
+
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" required>
+
+                <div class="button-group">
+                    <button type="submit">Criar Pedido</button>
+                    <button type="button" id="listarPedidosBtn">Listar Pedidos</button>
+                </div>
+            </form>
+            <ul id="pedidosList"></ul>
+        </section>
+
+        <section>
+            <h2>Atualizar Status do Pedido</h2>
+            <form id="atualizarStatusForm">
+                <label for="pedidoIdStatus">ID do Pedido</label>
+                <input type="text" id="pedidoIdStatus" required>
+                
+                <label for="status">Status</label>
+                <input type="text" id="status" required>
+                
+                <button type="submit">Atualizar Status</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Atualizar Endereço do Pedido</h2>
+            <form id="atualizarEnderecoForm">
+                <label for="pedidoIdEndereco">ID do Pedido</label>
+                <input type="text" id="pedidoIdEndereco" required>
+                
+                <label for="novoEndereco">Novo Endereço</label>
+                <input type="text" id="novoEndereco" required>
+                
+                <button type="submit">Atualizar Endereço</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Rastrear Pedido</h2>
+            <form id="rastrearPedidoForm">
+                <label for="pedidoIdRastrear">ID do Pedido</label>
+                <input type="text" id="pedidoIdRastrear" required>
+                
+                <button type="submit">Rastrear Pedido</button>
+            </form>
+            <div id="pedidoDetalhes"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
